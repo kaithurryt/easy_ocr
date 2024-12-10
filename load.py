@@ -3,8 +3,11 @@ from urllib.request import urlretrieve
 import socket
 import os
 from zipfile import ZipFile
+import logging
 
 socket.setdefaulttimeout(60)
+
+easyocr.easyocr.LOGGER.setLevel(logging.DEBUG)
 
 print("Downloading EasyOCR model...")
 target = "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/latin.zip"
