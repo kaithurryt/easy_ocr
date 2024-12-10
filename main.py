@@ -50,7 +50,9 @@ def ocr():
         img = img.convert("RGB")
 
         # to numpy
-        img = np.array(img)
+        img_bytes_io = io.BytesIO()
+        img.save(img_bytes_io, format="JPEG")  # 使用 JPEG 格式保存
+        img = img_bytes_io.getvalue()
 
         print("Start OCR 2")
         results = reader.readtext(img)
