@@ -619,9 +619,9 @@ def get_image_list(horizontal_list, free_list, img, model_height = 64, sort_outp
 def download_and_unzip(url, filename, model_storage_directory, verbose=True):
     print("download_and_unzip", url, filename, model_storage_directory, verbose)
     zip_path = os.path.join(model_storage_directory, 'temp.zip')
-    reporthook = printProgressBar(prefix='Progress:', suffix='Complete', length=50) if verbose else None
+    # reporthook = printProgressBar(prefix='Progress:', suffix='Complete', length=50) if verbose else None
     print("start download", url, zip_path)
-    urlretrieve(url, zip_path, reporthook=reporthook)
+    urlretrieve(url, zip_path)
     print("finish download", url, zip_path)
     with ZipFile(zip_path, 'r') as zipObj:
         print("extract", filename, model_storage_directory)
