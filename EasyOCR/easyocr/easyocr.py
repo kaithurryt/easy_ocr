@@ -17,13 +17,9 @@ from logging import getLogger
 import yaml
 import json
 
-if sys.version_info[0] == 2:
-    from io import open
-    from six.moves.urllib.request import urlretrieve
-    from pathlib2 import Path
-else:
-    from urllib.request import urlretrieve
-    from pathlib import Path
+
+from urllib.request import urlretrieve
+from pathlib import Path
 
 LOGGER = getLogger(__name__)
 
