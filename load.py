@@ -52,7 +52,7 @@ import logging
 
 print("Loading EasyOCR model...")
 reader = easyocr.Reader(
-    ["en", "ch_sim", "ch_tra", "ja", "ko"],
+    ["en", "ch_sim", "ja", "ko"],
     gpu=False,
     model_storage_directory="./",
     verbose=False,
