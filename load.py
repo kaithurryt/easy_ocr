@@ -1,7 +1,8 @@
 import easyocr
 from urllib.request import urlretrieve
 import socket
-
+import os
+from zipfile import ZipFile
 
 socket.setdefaulttimeout(60)
 
@@ -11,8 +12,21 @@ target = "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/latin
 urlretrieve(target, "model.zip")
 print("Model downloaded successfully. target = ", target)
 
+def download_and_unzip(url, filename, model_storage_directory, verbose=True):
+    zip_path = os.path.join(model_storage_directory, 'temp.zip')
+    print("Downloading EasyOCR model...")
+    urlretrieve(url, zip_path)
+    print("Model downloaded successfully. target = ", url)
+    print("Unzipping EasyOCR model...")
+    with ZipFile(zip_path, 'r') as zipObj:
+        print("Extracting EasyOCR model...")
+        zipObj.extract(filename, model_storage_directory)
+        print("Model unzipped.")
+    print("Removing temporary zip file...")
+    os.remove(zip_path)
+
 print("Unzipping EasyOCR model...")
-easyocr.utils.download_and_unzip(url=target, filename="latin.pth", model_storage_directory="./")
+download_and_unzip(url=target, filename="latin.pth", model_storage_directory="./")
 print("Model unzipped.")
 
 
