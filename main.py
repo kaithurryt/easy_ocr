@@ -70,6 +70,7 @@ def ocr():
         end = time.time()
         print("Take {} seconds".format(end-start))
         result_html += f"<p>Take {end - start:.2f} seconds</p>"
+        
 
         return result_html
 
