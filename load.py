@@ -9,6 +9,11 @@ print("Downloading EasyOCR model...")
 target = "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/latin.zip"
 
 urlretrieve(target, "model.zip")
+print("Model downloaded successfully. target = ", target)
+
+print("Unzipping EasyOCR model...")
+easyocr.utils.download_and_unzip(url=target, filename="latin.pth", model_storage_directory="./")
+print("Model unzipped.")
 
 
 print("Loading EasyOCR model...")
