@@ -51,7 +51,12 @@ import logging
 
 
 print("Loading EasyOCR model...")
-reader = easyocr.Reader(['en'], gpu=False, model_storage_directory='./')
+reader = easyocr.Reader(
+    ["en", "ch_sim", "ch_tra", "ja", "ko"],
+    gpu=False,
+    model_storage_directory="./",
+    verbose=False,
+)
 
 # 测试图像路径
 image_path = "receipt.webp"
