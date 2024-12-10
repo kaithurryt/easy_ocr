@@ -43,13 +43,13 @@ def ocr():
         return "No selected file"
 
     try:
-        # 使用 PIL 加载图像
+        print("Start OCR")
         img = Image.open(img_file)
 
         # 转换图像为 RGB 格式（部分图像可能是单通道）
         img = img.convert("RGB")
 
-        # 使用 EasyOCR 进行 OCR
+        print("Start OCR 2")
         results = reader.readtext(img)
 
         # 绘制识别框
