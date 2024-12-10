@@ -26,7 +26,7 @@ def index():
 @app.route("/ocr", methods=["POST"])
 def ocr():
     start = time.time()
-    reader = easyocr.Reader(['en', 'ch_sim', 'ch_tra', 'ja', 'ko'])
+    reader = easyocr.Reader(['en', 'ch_sim', 'ch_tra', 'ja', 'ko'], model_storage_directory="./", verbose=False)
     print("OCR model loaded, time:", time.time() - start)
     # 检查是否有文件上传
     if "image" not in flask.request.files:
@@ -70,7 +70,7 @@ def ocr():
         end = time.time()
         print("Take {} seconds".format(end-start))
         result_html += f"<p>Take {end - start:.2f} seconds</p>"
-        
+
 
         return result_html
 
