@@ -4,6 +4,7 @@ import io
 from PIL import Image, ImageDraw
 import easyocr
 import time
+import numpy as np
 
 app = flask.Flask(__name__)
 
@@ -46,8 +47,10 @@ def ocr():
         print("Start OCR")
         img = Image.open(img_file)
 
-        # 转换图像为 RGB 格式（部分图像可能是单通道）
         img = img.convert("RGB")
+
+        # to numpy
+        img = np.array(img)
 
         print("Start OCR 2")
         results = reader.readtext(img)
