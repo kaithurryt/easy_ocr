@@ -37,6 +37,10 @@ print("Unzipping EasyOCR2 model...")
 download_and_unzip(url=target2, filename="craft_mlt_25k.pth", model_storage_directory="./")
 print("Model unzipped.")
 
+print("Unzipping EasyOCR2 model... in ./model")
+download_and_unzip(url=target2, filename="craft_mlt_25k.pth", model_storage_directory="./model")
+print("Model unzipped.")
+
 print("Unzipping EasyOCR model...")
 download_and_unzip(url=target, filename="latin.pth", model_storage_directory="./")
 print("Model unzipped.")
