@@ -43,53 +43,49 @@ def ocr():
     if img_file.filename == "":
         return "No selected file"
 
-    try:
-        print("Start OCR")
-        img = Image.open(img_file)
+    print("Start OCR")
+    img = Image.open(img_file)
 
-        img = img.convert("RGB")
+    img = img.convert("RGB")
 
-        # to numpy
-        img_bytes_io = io.BytesIO()
-        img.save(img_bytes_io, format="JPEG")  # 使用 JPEG 格式保存
-        img = img_bytes_io.getvalue()
+    # to numpy
+    img_bytes_io = io.BytesIO()
+    img.save(img_bytes_io, format="JPEG")  # 使用 JPEG 格式保存
+    img = img_bytes_io.getvalue()
 
-        print("Start OCR 2")
-        results = reader.readtext(img)
+    print("Start OCR 2")
+    results = reader.readtext(img)
 
-        # 绘制识别框
-        draw = ImageDraw.Draw(img)
-        result_texts = []
-        for bbox, text, prob in results:
-            # bbox: 文本框的坐标 [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
-            x_min, y_min = bbox[0]
-            x_max, y_max = bbox[2]
-            draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=2)
-            result_texts.append(
-                f"Text: {text}, Confidence: {prob:.2f}, Position: {bbox}"
-            )
+    print("Start OCR 3")
+
+    # 绘制识别框
+    draw = ImageDraw.Draw(img)
+    result_texts = []
+    for bbox, text, prob in results:
+        # bbox: 文本框的坐标 [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
+        x_min, y_min = bbox[0]
+        x_max, y_max = bbox[2]
+        draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=2)
+        result_texts.append(f"Text: {text}, Confidence: {prob:.2f}, Position: {bbox}")
 
         # 将处理后的图片转换为 base64 编码
-        buffered = io.BytesIO()
-        img.save(buffered, format="PNG")
-        img_base64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
+    buffered = io.BytesIO()
+    img.save(buffered, format="PNG")
+    img_base64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
 
-        # 返回结果页面
-        result_html = f"<h1>OCR Result:</h1>"
-        for result_text in result_texts:
-            result_html += f"<p>{result_text}</p>"
-        result_html += (
-            f'<img src="data:image/png;base64,{img_base64}" alt="Processed Image"/>'
-        )
+    # 返回结果页面
+    result_html = f"<h1>OCR Result:</h1>"
+    for result_text in result_texts:
+        result_html += f"<p>{result_text}</p>"
+    result_html += (
+        f'<img src="data:image/png;base64,{img_base64}" alt="Processed Image"/>'
+    )
 
-        end = time.time()
-        print("Take {} seconds".format(end - start))
-        result_html += f"<p>Take {end - start:.2f} seconds</p>"
+    end = time.time()
+    print("Take {} seconds".format(end - start))
+    result_html += f"<p>Take {end - start:.2f} seconds</p>"
 
-        return result_html
-
-    except Exception as e:
-        return f"An error occurred: {str(e)}"
+    return result_html
 
 
 if __name__ == "__main__":
