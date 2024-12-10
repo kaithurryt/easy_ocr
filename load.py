@@ -45,6 +45,12 @@ print("Unzipping EasyOCR model...")
 download_and_unzip(url=target, filename="latin.pth", model_storage_directory="./")
 print("Model unzipped.")
 
+print("Loading EasyOCR model...")
+target3 = "https://github.com/JaidedAI/EasyOCR/releases/download/v1.3/english_g2.zip"
+print("Downloading EasyOCR model...", target3)
+download_and_unzip(url=target3, filename="english_g2.pth", model_storage_directory="./")
+print("Model unzipped.")
+
 
 print("Loading EasyOCR model...")
 reader = easyocr.Reader(['en'], gpu=False, model_storage_directory='./')
