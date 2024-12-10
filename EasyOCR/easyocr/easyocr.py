@@ -173,6 +173,7 @@ class Reader(object):
             print("model ", model)
 
             model_path = os.path.join(self.model_storage_directory, model['filename'])
+            print("model_path", model_path)
             # check recognition model file
             if recognizer:
                 if os.path.isfile(model_path) == False:
@@ -191,6 +192,7 @@ class Reader(object):
                     os.remove(model_path)
                     LOGGER.warning('Re-downloading the recognition model, please wait. '
                                    'This may take several minutes depending upon your network connection.')
+                    print("qwoiehqwioe", model['url'], model['filename'], self.model_storage_directory, verbose)
                     download_and_unzip(model['url'], model['filename'], self.model_storage_directory, verbose)
                     assert calculate_md5(model_path) == model['md5sum'], corrupt_msg
                     LOGGER.info('Download complete')
