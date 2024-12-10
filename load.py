@@ -1,7 +1,7 @@
 import easyocr
 
 # 初始化 EasyOCR 模型
-reader = easyocr.Reader(['en', 'ch_sim', 'ch_tra', 'ja', 'ko'])
+reader = easyocr.Reader(['en'], gpu=False, model_storage_directory='./model')
 
 # 测试图像路径
 image_path = "receipt.webp"
