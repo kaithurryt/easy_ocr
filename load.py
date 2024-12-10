@@ -1,4 +1,4 @@
-import easyocr
+import EasyOCR.easyocr as easyocr
 from urllib.request import urlretrieve
 import socket
 import os
