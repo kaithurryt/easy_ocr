@@ -1,6 +1,17 @@
 import easyocr
+from urllib.request import urlretrieve
+import socket
 
-# 初始化 EasyOCR 模型
+
+socket.setdefaulttimeout(60)
+
+print("Downloading EasyOCR model...")
+target = "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/latin.zip"
+
+urlretrieve(target, "model.zip")
+
+
+print("Loading EasyOCR model...")
 reader = easyocr.Reader(['en'], gpu=False, model_storage_directory='./model')
 
 # 测试图像路径
