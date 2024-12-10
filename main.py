@@ -28,7 +28,7 @@ def index():
 def ocr():
     start = time.time()
     reader = easyocr.Reader(
-        ["en", "ch_sim", "ch_tra", "ja", "ko"],
+        ["ch_sim", "en"],
         gpu=False,
         model_storage_directory="./",
         verbose=False,
