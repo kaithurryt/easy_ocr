@@ -17,9 +17,9 @@ def download_and_unzip(url, filename, model_storage_directory, verbose=True):
     print("Downloading EasyOCR model...")
     urlretrieve(url, zip_path)
     print("Model downloaded successfully. target = ", url)
-    print("Unzipping EasyOCR model...")
+    print("Unzipping EasyOCR model..., zip_path = ", zip_path)
     with ZipFile(zip_path, 'r') as zipObj:
-        print("Extracting EasyOCR model...")
+        print("Extracting EasyOCR model..., filename = , model_storage_directory = ", filename, model_storage_directory)
         zipObj.extract(filename, model_storage_directory)
         print("Model unzipped.")
     print("Removing temporary zip file...")
